@@ -1,0 +1,44 @@
+{
+  "name": "setup-emsdk",
+  "version": "16.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Github action to download and setup Emscripten",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc && ncc build lib/main.js --license licenses.txt",
+    "test": "ava"
+  },
+  "keywords": [
+    "actions",
+    "node",
+    "setup"
+  ],
+  "author": "step-security",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/cache": "^6.0.0",
+    "@actions/core": "^3.0.0",
+    "@actions/exec": "^3.0.0",
+    "@actions/io": "^3.0.2",
+    "@actions/tool-cache": "^4.0.0",
+    "axios": "^1.18.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@vercel/ncc": "^0.44.0",
+    "ava": "^8.0.1",
+    "tsx": "^4.22.4",
+    "typescript": "^6.0.2"
+  },
+  "ava": {
+    "extensions": [
+      "ts"
+    ],
+    "nodeArguments": [
+      "--import",
+      "tsx"
+    ],
+    "workerThreads": false
+  }
+}
