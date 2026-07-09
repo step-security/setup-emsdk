@@ -11,6 +11,11 @@ jobs:
       matrix:
         os: ${{ github.actor == 'dependabot[bot]' && fromJson('["ubuntu-latest"]') || fromJson('["ubuntu-latest", "windows-latest", "macOS-latest"]') }}
     steps:
+    - name: Harden the runner (Audit all outbound calls)
+      uses: step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920 # v2.20.0
+      with:
+        egress-policy: audit
+
     - uses: ./
 
     - name: Verify
@@ -18,6 +23,11 @@ jobs:
   actions-use-cache-test:
     runs-on: ubuntu-latest
     steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920 # v2.20.0
+        with:
+          egress-policy: audit
+
       - name: Setup emsdk (use cache if found, create otherwise)
         uses: ./
         with:
@@ -30,6 +40,11 @@ jobs:
   no-install:
     runs-on: ubuntu-latest
     steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920 # v2.20.0
+        with:
+          egress-policy: audit
+
       - uses: ./
         with:
           no-install: true
@@ -39,6 +54,11 @@ jobs:
   tot:
     runs-on: ubuntu-latest
     steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920 # v2.20.0
+        with:
+          egress-policy: audit
+
       - name: Setup emsdk (use cache if found, create otherwise)
         uses: ./
         with:
